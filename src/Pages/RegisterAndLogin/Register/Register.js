@@ -50,6 +50,14 @@ const Register = () => {
           Login Here{" "}
         </Link>
       </p>
+      <button type="submit" class="btn btn-primary w-100 my-3">
+        <img src="https://img.icons8.com/fluency/48/000000/google-logo.png" />{" "}
+        Sign Up Using Google
+      </button>
+      <button type="submit" class="btn btn-primary w-100 mb-5">
+        <img src="https://img.icons8.com/office/40/000000/facebook-new.png" />
+        Sign Up Using FaceBook
+      </button>
     </div>
   );
 };
