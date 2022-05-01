@@ -3,7 +3,7 @@ import "./Qualifications.css";
 
 const Qualifications = () => {
   return (
-    <div className="container ">
+    <div className="container " id="qualifications">
       <h1 className="text-light text-center m-10px">Qualifications</h1>
       <div className="card bg-dark text-light color my-5 w-80">
         <h5 className="card-header">MBBS</h5>
