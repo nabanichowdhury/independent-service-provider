@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import auth from "../../../firebase.init";
 import Login from "../Login/Login";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 const Register = () => {
+  // Sign Up using Email and password
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    console.log(email, password);
+    createUserWithEmailAndPassword(email, password);
+  };
   return (
     <div className="text-light w-50 mx-auto container">
       <h1>Register Here</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
             Name
@@ -16,6 +31,7 @@ const Register = () => {
             class="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
+            required
           />
         </div>
         <div class="mb-3">
@@ -23,10 +39,12 @@ const Register = () => {
             Email address
           </label>
           <input
+            ref={emailRef}
             type="email"
             class="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
+            required
           />
         </div>
         <div class="mb-3">
@@ -34,9 +52,11 @@ const Register = () => {
             Password
           </label>
           <input
+            ref={passwordRef}
             type="password"
             class="form-control"
             id="exampleInputPassword1"
+            required
           />
         </div>
 
@@ -50,14 +70,6 @@ const Register = () => {
           Login Here{" "}
         </Link>
       </p>
-      <button type="submit" class="btn btn-primary w-100 my-3">
-        <img src="https://img.icons8.com/fluency/48/000000/google-logo.png" />{" "}
-        Sign Up Using Google
-      </button>
-      <button type="submit" class="btn btn-primary w-100 mb-5">
-        <img src="https://img.icons8.com/office/40/000000/facebook-new.png" />
-        Sign Up Using FaceBook
-      </button>
     </div>
   );
 };
