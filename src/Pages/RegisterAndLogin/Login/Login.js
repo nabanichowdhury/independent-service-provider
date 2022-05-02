@@ -1,10 +1,13 @@
 import React, { useRef } from "react";
 import {
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithFacebook,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { Link, useHref, useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import auth from "../../../firebase.init";
 import Register from "../Register/Register";
 
@@ -42,6 +45,27 @@ const Login = () => {
     navigate(from, { replace: true });
   }
 
+  let errorElement;
+  if (error || errorFacebook || errorGoogle) {
+    errorElement = (
+      <div>
+        <p className="">
+          Error:{error?.message}
+          {errorFacebook?.message}
+          {errorGoogle?.message}
+        </p>
+      </div>
+    );
+  }
+  // reset password
+  const [sendPasswordResetEmail, sending, error3] =
+    useSendPasswordResetEmail(auth);
+  const resetPassword = async (event) => {
+    const email = emailRef.current.value;
+    await sendPasswordResetEmail(email);
+    toast("Sending email");
+  };
+
   return (
     <div className="text-light w-50 mx-auto container">
       <h1>Login Here</h1>
@@ -69,6 +93,7 @@ const Login = () => {
             id="exampleInputPassword1"
           />
         </div>
+        <div className="text-danger">{errorElement}</div>
 
         <button type="submit" class="btn btn-primary">
           Submit
@@ -81,6 +106,13 @@ const Login = () => {
           Register Now{" "}
         </Link>
       </p>
+      <p>
+        Forgot Password?
+        <button onClick={resetPassword} className="btn btn-primary">
+          Reset Password
+        </button>
+      </p>
+
       <button
         onClick={handleGoogleLogin}
         type="submit"
@@ -97,6 +129,7 @@ const Login = () => {
         <img src="https://img.icons8.com/office/40/000000/facebook-new.png" />
         Sign In Using FaceBook
       </button>
+      <ToastContainer />
     </div>
   );
 };

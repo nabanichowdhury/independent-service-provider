@@ -8,6 +8,7 @@ import Login from "./Pages/RegisterAndLogin/Login/Login";
 import Register from "./Pages/RegisterAndLogin/Register/Register";
 import RequiredAuth from "./Pages/RequiredAuth/RequiredAuth";
 import ServiceDetails from "./Pages/ServiceDetails/ServiceDetails";
+import CheckOut from "./Pages/CheckOut/CheckOut";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
 
@@ -23,6 +24,14 @@ function App() {
           element={
             <RequiredAuth>
               <ServiceDetails></ServiceDetails>
+            </RequiredAuth>
+          }
+        ></Route>
+        <Route
+          path="/checkout"
+          element={
+            <RequiredAuth>
+              <CheckOut></CheckOut>
             </RequiredAuth>
           }
         ></Route>
