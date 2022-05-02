@@ -4,7 +4,7 @@ import {
   useSignInWithFacebook,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { Link, useHref, useNavigate } from "react-router-dom";
+import { Link, useHref, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Register from "../Register/Register";
 
@@ -36,6 +36,11 @@ const Login = () => {
   const handFacebookLogin = () => {
     signInWithFacebook();
   };
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  if (user) {
+    navigate(from, { replace: true });
+  }
 
   return (
     <div className="text-light w-50 mx-auto container">
