@@ -11,9 +11,12 @@ const Service = ({ service }) => {
   };
   return (
     <div className="g-5 col-sm-12 col-md-6 col-lg-4 bg-dark">
-      <div class="card" style={{ width: "18rem" }}>
+      <div
+        class="card  border-0 rounded-3 "
+        style={{ width: "18rem", height: "30rem" }}
+      >
         <img src={img} height="280px" class="card-img-top" alt="..." />
-        <div className="card-body">
+        <div className="card-body bg-secondary">
           <h5 className="card-title">{name}</h5>
           <p className="card-text">{description}</p>
           <a
