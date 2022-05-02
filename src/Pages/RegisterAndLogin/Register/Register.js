@@ -6,6 +6,8 @@ import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+import Loading from "../../Shared/Loading/Loading";
 
 const Register = () => {
   // Sign Up using Email and password
@@ -24,10 +26,28 @@ const Register = () => {
     const password = passwordRef.current.value;
 
     console.log(email, password);
+    createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
-    alert("Updated profile");
+    toast("Updated profile");
     navigate("/home");
   };
+  // error display
+  let errorElement;
+  if (error || error1) {
+    errorElement = (
+      <div>
+        <p className="">
+          Error:{error?.message}
+          {error1?.message}
+        </p>
+      </div>
+    );
+  }
+
+  // Loading...
+  if (loading || updating) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="text-light w-50 mx-auto container">
@@ -88,15 +108,21 @@ const Register = () => {
           </label>
         </div>
 
+        <div className="text-danger">{errorElement}</div>
+
         <button disabled={!agree} type="submit" class="btn btn-primary">
           Submit
         </button>
       </form>
       <p>
         Already have an account?
-        <Link to="/login" element={<Login></Login>}>
-          Login Here{" "}
-        </Link>
+        {user ? (
+          <button>Sign Out</button>
+        ) : (
+          <Link to="/login" element={<Login></Login>}>
+            Login Here{" "}
+          </Link>
+        )}
       </p>
     </div>
   );

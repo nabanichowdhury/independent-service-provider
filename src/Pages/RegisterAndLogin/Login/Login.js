@@ -9,6 +9,7 @@ import { Link, useHref, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import auth from "../../../firebase.init";
+import Loading from "../../Shared/Loading/Loading";
 import Register from "../Register/Register";
 
 const Login = () => {
@@ -44,7 +45,7 @@ const Login = () => {
   if (user) {
     navigate(from, { replace: true });
   }
-
+  // error display
   let errorElement;
   if (error || errorFacebook || errorGoogle) {
     errorElement = (
@@ -65,6 +66,10 @@ const Login = () => {
     await sendPasswordResetEmail(email);
     toast("Sending email");
   };
+  // Loading
+  if (loadingGoogle || loading || loadingFacebook || sending) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="text-light w-50 mx-auto container">
