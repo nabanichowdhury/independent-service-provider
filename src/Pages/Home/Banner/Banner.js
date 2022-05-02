@@ -21,8 +21,10 @@ const Banner = () => {
           alt="First slide"
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h2>
+            Wherever the art of medicine is loved, there is also a love for
+            humanity.
+          </h2>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -34,8 +36,10 @@ const Banner = () => {
         />
 
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h2>
+            “The good physician treats the disease; the great physician treats
+            the patient who has the disease.“
+          </h2>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -47,10 +51,10 @@ const Banner = () => {
         />
 
         <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
+          <h2>
+            “The aim of medicine is to prevent disease and prolong life; the
+            ideal of medicine is to eliminate the need of a physician.”
+          </h2>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
